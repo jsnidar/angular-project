@@ -6,5 +6,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+  view : string = "shopping-list" || "recipe-list"
+
   title = 'Project';
+
+  onNavigate = (destination: string) => this.view = destination
 }
