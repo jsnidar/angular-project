@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
 import { Ingredient } from 'src/app/shared/ingredient.model';
 
 @Component({
@@ -18,4 +18,9 @@ export class ShoppingListComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  onAddIngredient = (ingredient: Ingredient) => this.ingredients.push(ingredient)
+
+  onRemoveIngredient = (ingredient: Ingredient) => {
+    this.ingredients = this.ingredients.filter(ing => ing !== ingredient)
+  }
 }
