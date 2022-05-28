@@ -1,6 +1,11 @@
 
-<app-header></app-header>
+<app-header (onNavigate)="onNavigate($event)"></app-header>
 <div class="container">
-  <app-recipe-book></app-recipe-book>
-  <app-shopping-list></app-shopping-list>
+  <div class="row">
+    <app-recipe-book
+      *ngIf="this.view === 'recipe-list';else shoppingList"></app-recipe-book>
+    <ng-template #shoppingList>
+      <app-shopping-list></app-shopping-list>
+    </ng-template>
+  </div>
 </div>
