@@ -7,6 +7,8 @@ import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
   @Output() onNavigate = new EventEmitter<string>();
+  @Output() show : boolean = false
+
 
   constructor() { }
 
@@ -14,4 +16,6 @@ export class HeaderComponent implements OnInit {
   }
 
   navigate = (destination : string) => this.onNavigate.emit(destination)
+
+  showDropdown = () => this.show = !this.show
 }

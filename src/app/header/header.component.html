@@ -18,9 +18,22 @@
         </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li class="dropdown">
-          <a href="#" class='dropdown-toggle' role='button'>Manage <span class="caret"></span></a>
-          <ul class='dropdown-menu'>
+        <li class="dropdown" appDropdown>
+          <a 
+            href="#" 
+            class='dropdown-toggle' 
+            role='button'
+          >Manage <span class="caret"></span></a>
+          <!-- this toggles the dropdown using ngClass  -->
+          <!-- <ul 
+            class='dropdown-menu'
+            [ngClass]="{show: this.show ? true : false}"
+            appDropdown
+          > -->
+          <ul 
+            class='dropdown-menu'
+            appDropdown
+          >
             <li><a href="#">Save Data</a></li>
             <li><a href="#">Fetch Data</a></li>
           </ul>
