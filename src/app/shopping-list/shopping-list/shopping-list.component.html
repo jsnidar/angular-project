@@ -1,8 +1,6 @@
 <div class="row">
   <div class="col-xs-10">
-    <!-- (handleAddIngredient) is the event we're listening for in ...-edit -->
-    <!-- onAddIngredient is the handler of that event in the parent -->
-    <app-shopping-list-edit (handleAddIngredient) = "onAddIngredient($event)"></app-shopping-list-edit>
+    <app-shopping-list-edit></app-shopping-list-edit>
     <hr>
     <ul class="list-group">
       <a 
@@ -10,7 +8,7 @@
         class='list-group-item'
         *ngFor="let ingredient of ingredients">
         {{ingredient.name}}  ({{ingredient.amount}})
-        <button class="btn-danger m-2" (click)="onRemoveIngredient(ingredient)"type="button">Delete</button>
+        <button class="btn-danger m-2" (click)="this.shoppingListService.onRemoveIngredient(ingredient)"type="button">Delete</button>
       </a>
     </ul>
   </div>
