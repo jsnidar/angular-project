@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Recipe } from '../recipe.model';
 import { RecipesService } from '../recipes.service';
@@ -22,7 +22,6 @@ export class RecipeItemComponent implements OnInit {
   }
 
   selectRecipe = () => {
-    this.recipesService.sendSelected.emit()
     this.router.navigate([this.id], {relativeTo: this.route})
   }
 }
