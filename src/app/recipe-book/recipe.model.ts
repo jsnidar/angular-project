@@ -1,7 +1,9 @@
+import { Injectable } from "@angular/core";
 import { Ingredient } from "../shared/ingredient.model";
+import { RecipesService } from "./recipes.service";
 
+@Injectable()
 export class Recipe {
-
   public name: string;
   public description: string;
   public imagePath: string;

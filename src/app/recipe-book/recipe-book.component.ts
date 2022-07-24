@@ -18,8 +18,6 @@ export class RecipeBookComponent implements OnInit {
    }
 
   ngOnInit(): void {
-
-    this.detail = this.recipesService.getSelected()
   }
 
 }

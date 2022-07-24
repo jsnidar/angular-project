@@ -7,7 +7,6 @@ import { Recipe } from './recipe.model';
 
 export class RecipesService{
 
-  private selected: Recipe
   private recipes: Recipe[] = [
     new Recipe(
         "Beef Tacos", 
@@ -36,20 +35,10 @@ export class RecipesService{
 
   }
 
-  sendSelected = new EventEmitter<Recipe>()
+  sendSelected = new EventEmitter<void>()
 
   getRecipes = () => [...this.recipes]
 
-  setSelected = (recipe: Recipe) => {
-    this.sendSelected.emit(recipe)
-    this.selected = recipe
-  }
-
-  getSelected = () => this.selected ? new Recipe(
-    this.selected.name, 
-    this.selected.description, 
-    this.selected.imagePath,
-    this.selected.ingredients
-  ) : undefined
+  getRecipe = (id : number) => [...this.recipes][id]
 
 }
