@@ -11,17 +11,24 @@ import { ShoppingListService } from '../shopping-list.service';
 })
 export class ShoppingListComponent implements OnInit, OnDestroy {
 
-  
   ingredients : Ingredient[]
   private ingChangeSub : Subscription
+  
   constructor(private shoppingListService: ShoppingListService) {
-    this. ingChangeSub = this.shoppingListService.ingredientChange.subscribe(
-      () => this.ingredients = this.shoppingListService.getIngredients()
-    )
-   }
+  }
 
   ngOnInit(): void {
+
+    this.ingChangeSub = this.shoppingListService.ingredientChange
+    .subscribe(() => {
+      this.ingredients = this.shoppingListService.getIngredients()
+    })
+
     this.ingredients = this.shoppingListService.getIngredients()
+  }
+
+  onEditItem(i : number) {
+    this.shoppingListService.startedEditing.next(i)
   }
 
   ngOnDestroy(){
