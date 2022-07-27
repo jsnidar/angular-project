@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-xs-12">
-    <form>
+    <form (ngSubmit)="onSubmit()" #formData="ngForm">
       <div class="row">
         <div class="col-sm-5 form-group">
           <label for="name">Name</label>
@@ -8,7 +8,13 @@
             type="text" 
             id='name' 
             class="form-control"
-            #name>
+            ngModel
+            name='name'
+            #name="ngModel"
+            required>
+          <span 
+            class="help-block" 
+            *ngIf="!name.valid && name.touched">Name is required.</span>
         </div>
         <div class="col-sm-2 form-group">
           <label for="amount">Amount</label>
@@ -16,23 +22,36 @@
             type="number" 
             class="form-control" 
             id='amount'
-            #amount>
+            name='amount'
+            required
+            min='0'
+            #amount="ngModel"
+            ngModel>
+          <span 
+            class="help-block" 
+            *ngIf="!amount.valid && amount.touched">
+            <span *ngIf="amount.errors['required']">
+              This field is required.
+            </span>
+            <span *ngIf="amount.errors['min']">
+              Amount cannot be less than 0
+            </span>
+          </span>
         </div>
       </div>
       <div class="row">
         <div class="col-xs-1">
-          <button 
-            class="btn-success m-2" 
-            type="submit" 
-            (click)="addIngredient($event, name.value, amount.value)"
-          >Add</button>
+          <button
+            class="btn-success" 
+            type="submit"
+            [attr.disable]='!formData.valid'
+            >{{ editMode ? "Update" : "Add"}}</button>
         </div>
         <div class="col-xs-1">
           <button 
             class="btn-primary m-2" 
             type="button"
-            (click)="clearIngredient(name, amount)"
-          >Clear</button>
+            (click)="clearIngredient()">Clear</button>
         </div>
         
         
