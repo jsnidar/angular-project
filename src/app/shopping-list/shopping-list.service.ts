@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { FormControl } from '@angular/forms';
 import { Subject } from 'rxjs';
 
 import { Ingredient } from '../shared/ingredient.model';
@@ -15,16 +16,24 @@ export class ShoppingListService {
   constructor() { }
 
   ingredientChange = new Subject<void>()
+  startedEditing = new Subject<number>()
 
   getIngredients = () => [...this.ingredients]
+
+  getIngredient = (i : number) => this.ingredients[i]
   
   onAddIngredient = (ingredient: Ingredient) => {
-    this.ingredients.push(ingredient)
+    this.ingredients = [...this.ingredients, ingredient]
     this.ingredientChange.next()
   }
 
   onRemoveIngredient = (ingredient: Ingredient) => {
     this.ingredients = this.ingredients.filter(ing => ing !== ingredient)
+    this.ingredientChange.next()
+  }
+
+  onUpdateIngredient(id: number, formData : Ingredient) {
+    this.ingredients[id] = formData
     this.ingredientChange.next()
   }
 
