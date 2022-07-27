@@ -31,6 +31,7 @@ export class RecipesService{
     )
   ]
 
+  recipeChange = new Subject<void>()
 
   constructor(){
 
@@ -39,5 +40,24 @@ export class RecipesService{
   getRecipes = () => [...this.recipes]
 
   getRecipe = (id : number) => [...this.recipes][id]
+
+  addRecipe(recipe : Recipe) {
+    this.recipes.push(recipe)
+    this.recipeChange.next()
+  }
+
+  updateRecipe(recipe : Recipe, index : number) {
+    this.recipes[index] = recipe
+    this.recipeChange.next()
+  }
+
+  deleteRecipe(index : number) {
+    this.recipes.splice(index, 1)
+    this.recipeChange.next()
+  }
+
+  size(){
+    return this.recipes.length
+  }
 
 }
