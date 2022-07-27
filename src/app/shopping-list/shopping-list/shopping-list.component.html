@@ -6,7 +6,9 @@
       <a 
         style="cursor: pointer" 
         class='list-group-item'
-        *ngFor="let ingredient of ingredients">
+        *ngFor="let ingredient of ingredients; let i = index"
+        (click)="onEditItem(i)"
+        >
         {{ingredient.name}}  ({{ingredient.amount}})
         <button class="btn-danger m-2" (click)="this.shoppingListService.onRemoveIngredient(ingredient)"type="button">Delete</button>
       </a>
